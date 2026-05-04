@@ -15,4 +15,4 @@ spec:
   - protocol: TCP
     port: 80
     targetPort: 3000
-    nodePort: 30080                # Access via http://<Worker-IP>:30080/login
+    nodePort: 30090                # Access via http://<Worker-IP>:30090/login
