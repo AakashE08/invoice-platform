@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Verification Scanner — Smart Invoice Platform</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <div class="logo">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="18" height="18" x="3" y="4" rx="2" ry="2"/><line x1="16" x2="16" y1="2" y2="6"/><line x1="8" x2="8" y1="2" y2="6"/><line x1="3" x2="21" y1="10" y2="10"/><path d="m9 16 2 2 4-4"/></svg>
+            <h1>Invoice Platform <span>Verification Scanner</span></h1>
+        </div>
+        <div class="header-user">
+            <span class="user-badge scanner-badge">Verification Agent</span>
+            <span class="user-name" id="userInfo">—</span>
+            <button class="logout-btn" id="logoutBtn">Sign out</button>
+        </div>
+    </header>
+
+    <main>
+        <div class="single-column">
+            <!-- Application 2: Verification Scanner -->
+            <section class="card" id="scannerCard">
+                <div class="card-header">
+                    <h2>Application 2: Verification Scanner</h2>
+                    <p>Verify a QR Code or Reference ID against the central database</p>
+                </div>
+                <form id="verifyForm">
+                    <div class="form-group search-group">
+                        <label for="scanRefId">Scan / Enter Reference ID</label>
+                        <div class="input-with-btn">
+                            <input type="text" id="scanRefId" placeholder="Paste Reference ID here..." required>
+                            <button type="submit" class="primary-btn">Validate</button>
+                        </div>
+                    </div>
+                </form>
+
+                <div id="verificationResult" class="result-container hidden">
+                    <div class="status-banner" id="statusBanner"></div>
+                    <div class="invoice-details" id="invoiceDetails"></div>
+                </div>
+            </section>
+
+            <!-- ML Fraud Detection Engine (shown after a successful verification) -->
+            <section class="card ml-card hidden" id="mlAnalysisCard">
+                <div class="card-header">
+                    <h2>ML Fraud Detection Engine</h2>
+                    <p>3 independent models analyze the verified invoice for fraud signals</p>
+                </div>
+                <div class="ml-controls">
+                    <div class="ml-mode">
+                        <div class="ml-mode-label">Way 1 — Server-Side</div>
+                        <p class="ml-mode-desc">Models execute on the Node.js backend via <code>POST /api/fraud/analyze</code></p>
+                        <button id="btnServerAnalysis" class="primary-btn">Run Server Analysis</button>
+                    </div>
+                    <div class="ml-divider"><span>OR</span></div>
+                    <div class="ml-mode">
+                        <div class="ml-mode-label">Way 2 — In-Browser</div>
+                        <p class="ml-mode-desc">Same models run directly in your browser — zero server round-trip</p>
+                        <button id="btnClientAnalysis" class="secondary-btn ml-client-btn">Run Browser Analysis</button>
+                    </div>
+                </div>
+                <div id="mlResults" class="hidden">
+                    <div class="analysis-badge" id="analysisBadge"></div>
+                    <div class="ensemble-row">
+                        <div class="ensemble-box" id="ensembleBox">
+                            <div class="ensemble-label">Ensemble Score</div>
+                            <div class="ensemble-score" id="ensembleScore">—</div>
+                            <div class="ensemble-verdict" id="ensembleVerdict">—</div>
+                        </div>
+                        <div class="risk-bar-wrap">
+                            <div class="risk-bar-track">
+                                <div class="risk-bar-fill" id="riskBarFill"></div>
+                            </div>
+                            <div class="risk-bar-labels">
+                                <span>0 — Low</span><span>50 — Medium</span><span>100 — High</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="models-grid" id="modelsGrid"></div>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <script src="fraud-models.js"></script>
+    <script src="app.js"></script>
+</body>
+</html>

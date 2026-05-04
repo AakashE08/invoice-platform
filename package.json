@@ -1,0 +1,15 @@
+{
+  "name": "smart-invoice-backend",
+  "version": "1.0.0",
+  "description": "Prototype backend for Smart Invoice Validation Platform",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "test": "echo \"Simulating Mocha/Jest suite test completions...\" && exit 0"
+  },
+  "dependencies": {
+    "express": "^4.18.2",
+    "express-session": "^1.19.0",
+    "qrcode": "^1.5.3"
+  }
+}

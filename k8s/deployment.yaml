@@ -1,0 +1,46 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: invoice-platform
+  namespace: default
+  labels:
+    app: invoice-platform
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: invoice-platform
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxSurge: 1
+      maxUnavailable: 0
+  template:
+    metadata:
+      labels:
+        app: invoice-platform
+    spec:
+      containers:
+      - name: invoice-platform
+        image: your-dockerhub-username/invoice-platform:latest   # Jenkins updates this tag
+        ports:
+        - containerPort: 3000
+        resources:
+          requests:
+            memory: "128Mi"
+            cpu: "100m"
+          limits:
+            memory: "256Mi"
+            cpu: "500m"
+        livenessProbe:
+          httpGet:
+            path: /login
+            port: 3000
+          initialDelaySeconds: 30
+          periodSeconds: 10
+        readinessProbe:
+          httpGet:
+            path: /login
+            port: 3000
+          initialDelaySeconds: 10
+          periodSeconds: 5
