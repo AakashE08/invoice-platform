@@ -22,7 +22,7 @@ spec:
     spec:
       containers:
       - name: invoice-platform
-        image: your-dockerhub-username/invoice-platform:latest   # Jenkins updates this tag
+        image: aakash888/invoice-platform:latest   # Jenkins updates this tag
         ports:
         - containerPort: 3000
         resources:

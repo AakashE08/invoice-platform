@@ -2,7 +2,7 @@ pipeline {
     agent any
 
     environment {
-        DOCKER_HUB_USERNAME = 'your-dockerhub-username'          // CHANGE THIS
+        DOCKER_HUB_USERNAME = 'aakash888'
         IMAGE_NAME          = "${DOCKER_HUB_USERNAME}/invoice-platform"
         IMAGE_TAG           = "${BUILD_NUMBER}"
         FULL_IMAGE          = "${IMAGE_NAME}:${IMAGE_TAG}"
@@ -15,7 +15,7 @@ pipeline {
             steps {
                 echo "Build #${BUILD_NUMBER}"
                 git branch: 'main',
-                    url: 'https://github.com/your-username/invoice-platform.git' // CHANGE THIS
+                    url: 'https://github.com/AakashE08/invoice-platform.git'
                 echo "Commit: ${GIT_COMMIT}"
             }
         }
